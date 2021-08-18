@@ -1,0 +1,1 @@
+# A simple way to make EntityFramework models translatable!
