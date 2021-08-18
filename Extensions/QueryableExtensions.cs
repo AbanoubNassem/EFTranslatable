@@ -19,7 +19,7 @@ namespace EFTranslatable.Extensions
         {
             var expr = Expression.MakeBinary(ExpressionType.Equal,
                 Expression.Call(LocaleExtract!, Expression.Convert(property.Body, typeof(string)),
-                    Expression.Constant($"$.{locale ?? Translatable.DefaultLocale}")),
+                    Expression.Constant($"$.{locale ?? Translatable.FallbackLocale}")),
                 Expression.Constant(equalsTo));
 
 

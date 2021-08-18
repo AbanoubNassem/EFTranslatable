@@ -11,11 +11,11 @@ namespace EFTranslatable.Extensions
 {
     public static class TranslatableExtensions
     {
-        public static ModelBuilder WithTranslatable(this ModelBuilder modelBuilder, DbContext context, string defaultLocale = null)
+        public static ModelBuilder WithTranslatable(this ModelBuilder modelBuilder, DbContext context, string fallbackLocale = null)
         {
-            if (defaultLocale != null)
+            if (fallbackLocale != null)
             {
-                Translatable.DefaultLocale = defaultLocale;
+                Translatable.FallbackLocale = fallbackLocale;
             }
 
             modelBuilder.HasDbFunction(typeof(Translatable).GetMethod("LocaleExtract", BindingFlags.NonPublic | BindingFlags.Static)!)

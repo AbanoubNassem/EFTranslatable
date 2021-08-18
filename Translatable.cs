@@ -12,7 +12,7 @@ namespace EFTranslatable
     [JsonConverter(typeof(TranslatableJsonConverter))]
     public struct Translatable
     {
-        public static string DefaultLocale { get; set; } = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName.ToLowerInvariant();
+        public static string FallbackLocale { get; set; }
 
         public readonly Dictionary<string, string> Translations;
         public string CurrentLocale { get; set; }
@@ -42,7 +42,9 @@ namespace EFTranslatable
 
         public Translatable Set(string value, string locale = null)
         {
-            var key = locale ?? CurrentLocale ?? DefaultLocale;
+            var key = locale
+                      ?? CurrentLocale
+                      ?? Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName.ToLowerInvariant();
 
             if (Translations.ContainsKey(key))
                 Translations[key] = value;
@@ -54,11 +56,11 @@ namespace EFTranslatable
 
         public string Get(string locale = null)
         {
-            var key = locale ?? CurrentLocale;
+            var key = locale ?? CurrentLocale ?? Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName.ToLowerInvariant();
 
             if (string.IsNullOrEmpty(key) || !Translations.ContainsKey(key))
             {
-                key = Translations.Keys.FirstOrDefault() ?? DefaultLocale;
+                key = FallbackLocale ?? Translations.Keys.FirstOrDefault() ?? "";
             }
 
             Translations.TryGetValue(key, out var value);
