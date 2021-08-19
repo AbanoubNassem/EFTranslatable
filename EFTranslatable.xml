@@ -36,12 +36,13 @@
             Add the required Database functions to the current ModelBuilder
             </summary>
         </member>
-        <member name="M:EFTranslatable.Extensions.TranslatableExtensions.WithTranslatable(Microsoft.EntityFrameworkCore.ModelBuilder,Microsoft.EntityFrameworkCore.DbContext,System.String)">
+        <member name="M:EFTranslatable.Extensions.TranslatableExtensions.WithTranslatable(Microsoft.EntityFrameworkCore.ModelBuilder,Microsoft.EntityFrameworkCore.DbContext,System.String,System.String)">
             <summary>
             Extend the ModelBuilder to allow the Translatable functionalists
             </summary>
             <param name="modelBuilder">The current EntityFrameWork ModelBuilder being used</param>
             <param name="context">The current EntityFrameWork DbContext being used</param>
+            <param name="columnType">The Database column type Json recommended, otherwise text</param>
             <param name="fallbackLocale">A fallback locale to use if the current Locale has no translations</param>
             <returns>ModelBuilder</returns>
         </member>

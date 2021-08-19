@@ -31,6 +31,8 @@ The required steps to make a model translatable are:
     {
         modelBuilder.WithTranslatable(this);
     }
+
+    public DbSet<Post> Posts { get; set; }
 ```
 
 - Next, you should Drive from `HasTranslations<T>` where `T` is the current `Model`.
@@ -44,9 +46,9 @@ The required steps to make a model translatable are:
    {
        public uint Id { get; set; }
 
-       public Translatable Title { get; set; }
+       public Translatable Title { get; set; } = new();
 
-       public Translatable Content { get; set; }
+       public Translatable Content { get; set; } = new();
    }
 ```
 
@@ -130,7 +132,7 @@ There is two ways of making a `Translatable` :
     [HttpGet]
     public IActionResult Multiple()
     {
-        var posts = _context.Drugs.Select(x => x.Translate("ar")).ToList();
+        var posts = _context.Posts.Select(x => x.Translate("ar")).ToList();
 
         return Ok(posts);
     }
