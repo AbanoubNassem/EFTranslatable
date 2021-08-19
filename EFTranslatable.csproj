@@ -1,11 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <PackageId>EFTranslatable</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.0.2</Version>
     <Authors>Abanoub Nassem Mousa</Authors>
     <Company>AbCodes.dev</Company>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\ASP.Net\WaseetTabi\EFTranslatable\EFTranslatable.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

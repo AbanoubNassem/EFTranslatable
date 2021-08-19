@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EFTranslatable</name>
+    </assembly>
+    <members>
+        <member name="T:EFTranslatable.Extensions.QueryableExtensions">
+            <summary>
+            Add Translatable/Localizations Methods to IQueryable
+            </summary>
+        </member>
+        <member name="M:EFTranslatable.Extensions.QueryableExtensions.WhereLocalizedEquals``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,EFTranslatable.Translatable}},System.String,System.String)">
+            <summary>
+            Filter the current EntitySet where the giving property-predicate Equals to the giving String
+            </summary>
+            <param name="source">DbSet</param>
+            <param name="property">The predicate to select a Translatable property</param>
+            <param name="equalsTo">The giving String to compare property to</param>
+            <param name="locale">The locale where the predicate will run on, If null the current Thread locale will be used instead</param>
+            <typeparam name="TSource">EntityFrameWork Model</typeparam>
+            <returns>IQueryable</returns>
+        </member>
+        <member name="M:EFTranslatable.Extensions.QueryableExtensions.WhereLocalizedContains``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,EFTranslatable.Translatable}},System.String,System.String)">
+            <summary>
+            Filter the current EntitySet where the giving property-predicate Contains to the giving String
+            </summary>
+            <param name="source">DbSet</param>
+            <param name="property">The predicate to select a Translatable property</param>
+            <param name="contains">The giving String to check if property contains it</param>
+            <param name="locale">The locale where the predicate will run on, If null the current Thread locale will be used instead</param>
+            <typeparam name="TSource">EntityFrameWork Model</typeparam>
+            <returns>IQueryable</returns>
+        </member>
+        <member name="T:EFTranslatable.Extensions.TranslatableExtensions">
+            <summary>
+            Add the required Database functions to the current ModelBuilder
+            </summary>
+        </member>
+        <member name="M:EFTranslatable.Extensions.TranslatableExtensions.WithTranslatable(Microsoft.EntityFrameworkCore.ModelBuilder,Microsoft.EntityFrameworkCore.DbContext,System.String)">
+            <summary>
+            Extend the ModelBuilder to allow the Translatable functionalists
+            </summary>
+            <param name="modelBuilder">The current EntityFrameWork ModelBuilder being used</param>
+            <param name="context">The current EntityFrameWork DbContext being used</param>
+            <param name="fallbackLocale">A fallback locale to use if the current Locale has no translations</param>
+            <returns>ModelBuilder</returns>
+        </member>
+        <member name="T:EFTranslatable.HasTranslations`1">
+            <summary>
+            Give the ability to driven Entity to translate it's self
+            </summary>
+            <typeparam name="T">EntityFrameWork Model</typeparam>
+        </member>
+        <member name="M:EFTranslatable.HasTranslations`1.Translate(System.String)">
+            <summary>
+            Translate current Entity to the specified locale 
+            </summary>
+            <param name="locale">The locale to translate to</param>
+            <returns>New translated Entity with the giving locale</returns>
+        </member>
+        <member name="T:EFTranslatable.Translatable">
+            <summary>
+            Translatable is a type which allow the Entity property Translatable 
+            </summary>
+        </member>
+        <member name="P:EFTranslatable.Translatable.FallbackLocale">
+            <summary>
+            A fallback locale to use if the current Locale has no translations
+            </summary>
+        </member>
+        <member name="F:EFTranslatable.Translatable.Translations">
+            <summary>
+            The current Locales with it's Translations
+            </summary>
+        </member>
+        <member name="P:EFTranslatable.Translatable.CurrentLocale">
+            <summary>
+            The current locale the Property is using
+            </summary>
+        </member>
+        <member name="M:EFTranslatable.Translatable.#ctor(System.String)">
+            <summary>
+            A constructor to build Translatable out of JSON string
+            </summary>
+            <param name="json">The giving JSON string</param>
+        </member>
+        <member name="M:EFTranslatable.Translatable.#ctor(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            A constructor to build/copy Translatable out of an other Translatable
+            </summary>
+            <param name="translations">The giving Locales with it's Translations</param>
+        </member>
+        <member name="M:EFTranslatable.Translatable.ToJson">
+            <summary>
+            Convert the current Translations to JSON
+            </summary>
+            <returns>JSON String</returns>
+        </member>
+        <member name="M:EFTranslatable.Translatable.Set(System.String,System.String)">
+            <summary>
+            Set/Update the giving locale with the giving translation
+            </summary>
+            <param name="value">the giving translation</param>
+            <param name="locale">
+                    the giving locale, If null the CurrentLocale will be used,
+                    If CurrentLocale is null The current Thread locale will be used instead
+            </param>
+            <returns>Translatable</returns>
+        </member>
+        <member name="M:EFTranslatable.Translatable.Get(System.String)">
+            <summary>
+            Returns the Value of the used locale , If null the current Thread locale will be used instead
+            </summary>
+            <param name="locale">
+                the giving locale to get it's value, If null the CurrentLocale will be used,
+                If CurrentLocale is null The current Thread locale will be used instead,
+                If no Translations found the FallbackLocale will be used
+                , otherwise the First Translation found, will be used instead
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:EFTranslatable.Translatable.ToString">
+            <inheritdoc />
+        </member>
+        <member name="M:EFTranslatable.Translatable.op_Implicit(EFTranslatable.Translatable)~System.String">
+            <summary>
+            Convert the current Translatable to String
+            </summary>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:EFTranslatable.Translatable.WithLocale(System.String)">
+            <summary>
+            Set the CurrentLocale and Chain 
+            </summary>
+            <param name="locale">The locale to be used</param>
+            <returns>Translatable</returns>
+        </member>
+        <member name="T:EFTranslatable.TranslatableJsonConverter">
+            <inheritdoc />
+        </member>
+        <member name="M:EFTranslatable.TranslatableJsonConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc />
+        </member>
+        <member name="M:EFTranslatable.TranslatableJsonConverter.Write(System.Text.Json.Utf8JsonWriter,EFTranslatable.Translatable,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

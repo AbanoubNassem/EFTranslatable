@@ -9,8 +9,18 @@ using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 
 namespace EFTranslatable.Extensions
 {
+    /// <summary>
+    /// Add the required Database functions to the current ModelBuilder
+    /// </summary>
     public static class TranslatableExtensions
     {
+        /// <summary>
+        /// Extend the ModelBuilder to allow the Translatable functionalists
+        /// </summary>
+        /// <param name="modelBuilder">The current EntityFrameWork ModelBuilder being used</param>
+        /// <param name="context">The current EntityFrameWork DbContext being used</param>
+        /// <param name="fallbackLocale">A fallback locale to use if the current Locale has no translations</param>
+        /// <returns>ModelBuilder</returns>
         public static ModelBuilder WithTranslatable(this ModelBuilder modelBuilder, DbContext context, string fallbackLocale = null)
         {
             if (fallbackLocale != null)
