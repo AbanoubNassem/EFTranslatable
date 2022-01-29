@@ -1,6 +1,7 @@
 ﻿
 
 
+
 # A simple way to make Entity Framework models translatable!
 
 ![Nuget](https://img.shields.io/nuget/v/EFTranslatable?style=plastic) ![Nuget](https://img.shields.io/nuget/dt/EFTranslatable?color=green&style=plastic)
@@ -8,7 +9,7 @@
 EFTranslatable is a light weight simple struct/type to allow your Entity/Model properties to be easily translated.
 
 ### Installation
-EFTranslatable is available on [NuGet](https://www.nuget.org/packages/EFTranslatable/)
+EFTranslatable is available on [NuGet](https://www.nuget.org/packages/EFTranslatable/) , [GitHub](https://github.com/AbanoubNassem/EFTranslatable)
 
 ```sh
 dotnet add package EFTranslatable
@@ -141,4 +142,4 @@ There is two ways of making a `Translatable` :
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](https://github.com/AbanoubNassem/EFTranslatable/blob/master/LICENSE.md) for more information.
